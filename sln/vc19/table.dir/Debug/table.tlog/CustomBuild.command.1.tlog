@@ -1,0 +1,10 @@
+^C:\MP2-LAB6-TABLE\CMAKELISTS.TXT
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/mp2-lab6-table -BC:/mp2-lab6-table/sln/vc19 --check-stamp-file C:/mp2-lab6-table/sln/vc19/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
