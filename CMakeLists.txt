@@ -1,15 +1,23 @@
-cmake_minimum_required (VERSION 2.8)
+cmake_minimum_required(VERSION 2.8) 
 
-project ( table )
+set(PROJECT_NAME table) 
+project(${PROJECT_NAME}) 
 
-set ( SAM_DIR ${PROJECT_SOURCE_DIR}/samples )
+set(CMAKE_CONFIGURATION_TYPES "Debug;Release" CACHE STRING "Configs" FORCE) 
+if(NOT CMAKE_BUILD_TYPE) 
+  set(CMAKE_BUILD_TYPE Release)
+endif()
 
-set ( APP_NAME table )
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR}/bin)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE})
 
-set( CMAKE_BUILD_TYPE RELEASE )
+set(MP2_CUSTOM "${PROJECT_NAME}")
+set(MP2_INCLUDE "${CMAKE_CURRENT_SOURCE_DIR}/include")
 
-include_directories ( include )
+include_directories (include)
 
-list(APPEND SAM ${SAM_DIR}/sample_table.cpp )
-
-add_executable ( ${APP_NAME} ${SAM} )
+# BUILD
+add_subdirectory(include)
+add_subdirectory(samples)
